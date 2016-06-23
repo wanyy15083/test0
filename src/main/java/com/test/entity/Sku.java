@@ -37,6 +37,28 @@ public class Sku implements Serializable {
 	// 维护时间
 	private String lastUpdate;
 
+	public Sku() {
+	}
+
+	public Sku(Integer id, Integer categoryId, Integer brandId, String erpCode, String skuCode, String barCode, String name, String unit, Integer isGiftGoods, String specialGoodsFlag,
+			String category, String goodsType, Integer status, String lastUpdate) {
+		super();
+		this.id = id;
+		this.categoryId = categoryId;
+		this.brandId = brandId;
+		this.erpCode = erpCode;
+		this.skuCode = skuCode;
+		this.barCode = barCode;
+		this.name = name;
+		this.unit = unit;
+		this.isGiftGoods = isGiftGoods;
+		this.specialGoodsFlag = specialGoodsFlag;
+		this.category = category;
+		this.goodsType = goodsType;
+		this.status = status;
+		this.lastUpdate = lastUpdate;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -147,6 +169,13 @@ public class Sku implements Serializable {
 
 	public void setLastUpdate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	@Override
+	public String toString() {
+		return "Sku [id=" + id + ", categoryId=" + categoryId + ", brandId=" + brandId + ", erpCode=" + erpCode + ", skuCode=" + skuCode + ", barCode=" + barCode + ", name=" + name + ", unit=" + unit
+				+ ", isGiftGoods=" + isGiftGoods + ", specialGoodsFlag=" + specialGoodsFlag + ", category=" + category + ", goodsType=" + goodsType + ", status=" + status + ", lastUpdate="
+				+ lastUpdate + "]";
 	}
 
 }

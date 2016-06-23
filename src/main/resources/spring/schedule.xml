@@ -104,7 +104,7 @@
 			<list>
 				<!-- <ref bean="CronTriggerBean_FindUser"/>
 				<ref bean="CronTriggerBean_InsertUser"/> -->
-				<ref bean="CronTriggerBean_CreatePic"/>
+				<!-- <ref bean="CronTriggerBean_CreatePic"/> -->
 				<!-- <ref bean="CronTriggerBean_CreatePic1"/>
 				<ref bean="CronTriggerBean_CreatePic2"/> -->
 			</list>
