@@ -30,10 +30,13 @@
 	<div>
 		<a href="${baseurl}/testExcel/download">下载模板</a>
 	</div>
+	<div>
+		<a href="${baseurl}/testExcel/export">导出数据</a>
+	</div>
 	<div id="fileQueue"></div>
 	<input type="file" name="uploadify" id="uploadify" />
 	<p>
-		<a href="javascript:$('#uploadify').uploadify('upload', '*')">导入文件</a>
+		<a href="javascript:$('#uploadify').uploadify('upload', '*')">导入数据</a>
 		| <a href="javascript:$('#fuploadify').uploadify('stop')">停止导入</a>
 	</p>
 

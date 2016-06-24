@@ -20,6 +20,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:jdbc.properties</value>
+				<value>classpath:env.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -86,7 +87,7 @@
 		<aop:pointcut id="myPointcut" expression="execution(* com.test.service.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
 	</aop:config>
-	
-   <!--  <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/> -->
+
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 	
 </beans>

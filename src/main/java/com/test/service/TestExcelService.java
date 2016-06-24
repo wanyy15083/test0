@@ -12,4 +12,6 @@ public interface TestExcelService {
 	public List<SkuPicture> selectSkuPictureList();
 
 	public void excelImport(List<SkuPicture> list);
+
+	public int selectSkuPictureOne(SkuPicture skuPicture);
 }

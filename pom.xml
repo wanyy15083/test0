@@ -323,6 +323,8 @@
 				<configuration>
 					<port>8080</port>
 					<path>/</path>
+					<staticContextDocbase>D:\\path\\</staticContextDocbase>
+			<staticContextPath></staticContextPath>
 				</configuration>
 			</plugin>
 			<plugin>

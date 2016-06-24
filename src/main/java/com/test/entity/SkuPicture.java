@@ -11,22 +11,22 @@ public class SkuPicture implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Excel(name = "主键")
+	@Excel(name = "主键", isImportField = "true")
 	@NotNull
 	private Integer id;// 主键
-	@Excel(name = "sku编码")
+	@Excel(name = "sku编码", isImportField = "true")
 	@NotNull
 	private Integer skuId;// skuId
-	@Excel(name = "图片序号")
+	@Excel(name = "图片序号", isImportField = "true")
 	@NotNull
 	private Integer inx;// 图片序号
-	@Excel(name = "图片地址")
+	@Excel(name = "图片地址", width = 90, isImportField = "true")
 	@NotBlank
 	private String url;// 图片地址
-	@Excel(name = "图片位置")
+	@Excel(name = "图片位置", isImportField = "true")
 	@NotNull
 	private Integer location;// 图片位置，1 商品主图，2 商品详情介绍图，3 电子说明书，4 保修卡
-	@Excel(name = "维护时间")
+	@Excel(name = "维护时间", isImportField = "true")
 	@NotBlank
 	private String lastUpdate;// 维护时间
 
