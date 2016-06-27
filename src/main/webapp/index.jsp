@@ -33,6 +33,9 @@
 	<div>
 		<a href="${baseurl}/testExcel/export">导出数据</a>
 	</div>
+	<div>
+		<a href="${baseurl}/testExcel/exportAll">导出数据map</a>
+	</div>
 	<div id="fileQueue"></div>
 	<input type="file" name="uploadify" id="uploadify" />
 	<p>
@@ -86,6 +89,7 @@
 			'onUploadSuccess' : function(file, data, response) {
 				$('#' + file.id).find('.data').html(' 上传完毕');
 				alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+				window.location.href=data;
 			},
 			'onUploadError' : function(file, errorCode, errorMsg, errorString) {
 				alert('The file ' + file.name + ' could not be uploaded: ' + errorString);

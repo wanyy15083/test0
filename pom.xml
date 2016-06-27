@@ -316,15 +316,17 @@
 				</configuration>
 			</plugin>
 			<!-- 配置Tomcat插件 -->
+			<!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> <version>2.2</version> <configuration> <port>8080</port> 
+				<path>/</path> <staticContextDocbase>D:/path</staticContextDocbase> <staticContextPath>/path</staticContextPath> </configuration> </plugin> -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
+				<version>2.3-SNAPSHOT</version>
 				<configuration>
 					<port>8080</port>
 					<path>/</path>
-					<staticContextDocbase>D:\\path\\</staticContextDocbase>
-			<staticContextPath></staticContextPath>
+					<staticContextPath>/path</staticContextPath>
+					<staticContextDocbase>D:/path/</staticContextDocbase>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -386,4 +388,18 @@
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>sonatype</id>
+			<url>http://repository.sonatype.org/content/groups/public/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
 </project>

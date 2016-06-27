@@ -33,7 +33,7 @@
 		SPTPID, SKUID, TPURL, XSXH, TPSYD, ZHWHSJ
 	</sql>
 	<sql id="tb_value_skutp">
-		null,#{skuId},#{inx},#{url},#{location},#{lastUpdate}
+		null,#{skuId},#{url},#{inx},#{location},#{lastUpdate}
 	</sql>
 	<select id="selectSkuList" resultMap="SkuMap">
 		select
@@ -43,7 +43,7 @@
 	<select id="selectSkuPictureList" resultMap="SkuPictureMap">
 		select
 		<include refid="tb_col_skutp"></include>
-		from skutp
+		from skutp order by skuid,tpsyd,xsxh
 	</select>
 	<select id="selectSkuPictureOne" parameterType="com.test.entity.SkuPicture" resultType="int">
 		select count(*) from skutp
