@@ -1,7 +1,6 @@
 package com.test.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +14,7 @@ public class SkuPicture implements Serializable {
 	@Excel(name = "主键", isImportField = "true")
 	@NotNull(message = "主键不能为空！")
 	private Integer id;// 主键
-	@Excel(name = "sku编码", isImportField = "true")
+	@Excel(name = "sku编码", mergeVertical = true, isImportField = "true")
 	@NotNull(message = "sku编码不能为空！")
 	private Integer skuId;// skuId
 	@Excel(name = "图片地址", width = 90, isImportField = "true")
