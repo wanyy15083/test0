@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.test.entity.Sku;
 import com.test.entity.SkuPicture;
 import com.test.entity.SkuPictureImport;
 import com.test.service.TestExcelService;
@@ -113,41 +114,43 @@ public class TestExcelController {
 	@ResponseBody
 	public String testExcelExport(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setContentType("UTF-8");
-		
+
 		List<ExcelExportEntity> entityList = new ArrayList<ExcelExportEntity>();
-//		ExcelExportEntity exportEntity = new ExcelExportEntity("主键", "id");
-//		entityList.add(exportEntity);
+		// ExcelExportEntity exportEntity = new ExcelExportEntity("主键", "id");
+		// entityList.add(exportEntity);
 		ExcelExportEntity exportEntity = new ExcelExportEntity("sku编码", "skuId");
-//		exportEntity.setMergeVertical(true);
-		exportEntity.setNeedMerge(true);
+		exportEntity.setMergeVertical(true);
+		// exportEntity.setNeedMerge(true);
 		entityList.add(exportEntity);
-		exportEntity = new ExcelExportEntity("图片地址", "url");
-		entityList.add(exportEntity);
-		exportEntity = new ExcelExportEntity("图片位置", "location");
-		entityList.add(exportEntity);
-		exportEntity = new ExcelExportEntity("图片序号", "inx");
-		entityList.add(exportEntity);
-		exportEntity = new ExcelExportEntity("维护时间", "lastUpdate");
-		entityList.add(exportEntity);
-		
-		List<Map<String, Object>> mapList = new ArrayList<Map<String,Object>>();
+		// exportEntity = new ExcelExportEntity("图片地址", "url");
+		// entityList.add(exportEntity);
+		// exportEntity = new ExcelExportEntity("图片位置", "location");
+		// exportEntity.setMergeVertical(true);
+		// entityList.add(exportEntity);
+		// exportEntity = new ExcelExportEntity("图片序号", "inx");
+		// entityList.add(exportEntity);
+		// exportEntity = new ExcelExportEntity("维护时间", "lastUpdate");
+		// entityList.add(exportEntity);
+
+		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map;
 		List<SkuPicture> list = testExcelService.selectSkuPictureList();
 		for (SkuPicture skuPicture : list) {
 			map = new HashMap<String, Object>();
-			map.put("id", skuPicture.getId());
+			// map.put("id", skuPicture.getId());
 			map.put("skuId", skuPicture.getSkuId());
-			map.put("inx", skuPicture.getInx());
-			map.put("url", skuPicture.getUrl());
-			map.put("location", skuPicture.getLocation());
-			map.put("lastUpdate", skuPicture.getLastUpdate());
+			// map.put("inx", skuPicture.getInx());
+			// map.put("url", skuPicture.getUrl());
+			// map.put("location", skuPicture.getLocation());
+			// map.put("lastUpdate", skuPicture.getLastUpdate());
 			mapList.add(map);
 		}
-		ExportParams params = new ExportParams("SKU图片", null, ExcelType.XSSF);
-		
+		ExportParams params = new ExportParams("SKU图片", "SKU图片", ExcelType.XSSF);
+
 		Workbook workbook = ExcelExportUtil.exportExcel(params, entityList, mapList);
-		
-//		Workbook workbook = ExcelExportUtil.exportExcel(params, SkuPicture.class, list);
+
+		// Workbook workbook = ExcelExportUtil.exportExcel(params,
+		// SkuPicture.class, list);
 		String fileName = "SKU图片数据.xlsx";
 		try {
 			String agent = (String) request.getHeader("USER-AGENT");
@@ -166,7 +169,7 @@ public class TestExcelController {
 		}
 		return null;
 	}
-	
+
 	@RequestMapping("exportAll")
 	@ResponseBody
 	public String testExcelExportAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -184,6 +187,33 @@ public class TestExcelController {
 				fileName = URLEncoder.encode(fileName, "UTF8");
 			}
 			response.reset();
+			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";target=_blank");
+			workbook.write(response.getOutputStream());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@RequestMapping("exportSku")
+	@ResponseBody
+	public String testExcelExportSku(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("UTF-8");
+		ExportParams params = new ExportParams("SKU", "SKU", ExcelType.XSSF);
+		List<Sku> list = testExcelService.selectSkuList();
+		Workbook workbook = ExcelExportUtil.exportExcel(params, Sku.class, list);
+		String fileName = "SKU数据.xlsx";
+		try {
+			String agent = (String) request.getHeader("USER-AGENT");
+			if (agent != null && agent.indexOf("Firefox") != -1) {
+				// 火狐浏览器特殊处理
+				fileName = "=?UTF-8?B?" + (new String(Base64.encodeBase64(fileName.getBytes("UTF-8")))) + "?=";
+			} else {
+				fileName = URLEncoder.encode(fileName, "UTF8");
+			}
+			response.reset();
+			// response.setContentType("application/vnd.ms-excel");
 			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";target=_blank");
 			workbook.write(response.getOutputStream());

@@ -2,6 +2,8 @@ package com.test.entity;
 
 import java.io.Serializable;
 
+import org.jeecgframework.poi.excel.annotation.Excel;
+
 /**
  * 商品SKU信息
  */
@@ -9,8 +11,10 @@ public class Sku implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	// 商品内码
+	@Excel(name = "商品内码")
 	private Integer id;
 	// SAP品类代码
+	@Excel(name = "SAP品类代码", mergeVertical = true)
 	private Integer categoryId;
 	// 品牌代码
 	private Integer brandId;
@@ -21,6 +25,7 @@ public class Sku implements Serializable {
 	// 条码
 	private String barCode;
 	// 商品名称
+	@Excel(name = "商品名称")
 	private String name;
 	// 计量单位
 	private String unit;

@@ -31,7 +31,7 @@
 		<a href="${baseurl}/testExcel/download">下载模板</a>
 	</div>
 	<div>
-		<a href="${baseurl}/testExcel/export">导出数据</a>
+		<a href="${baseurl}/testExcel/exportSku">导出数据</a>
 	</div>
 	<div>
 		<a href="${baseurl}/testExcel/exportAll">导出数据map</a>
